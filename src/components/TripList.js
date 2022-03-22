@@ -1,9 +1,15 @@
 import axios from 'axios';
+import { useState } from 'react';
 
 const TripList = () => {
+  const [trips, setTrips] = useState([]);
+
+  console.log(trips);
+
   axios(' http://localhost:3000/trips')
     .then((res) => res.data)
-    .then((json) => console.log(json));
+    .then((json) => setTrips(json));
+
   return (
     <div>
       <h2>TripList</h2>
