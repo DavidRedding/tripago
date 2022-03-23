@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const TripList = () => {
   const [url, setUrl] = useState(' http://localhost:3000/trips');
-  const { data: trips, isPending } = useAxios(url);
+  const { data: trips, isPending, error } = useAxios(url);
 
   const list = trips.map((trip) => (
     <li key={trip.id} className=" border border-slate-100 mb-6 px-2 py-6 shadow rounded hover:bg-slate-100">
@@ -15,6 +15,8 @@ const TripList = () => {
   return (
     <div>
       <h2 className=" font-bold text-2xl mb-3">Trip List</h2>
+      {isPending && <div>Loading trips...</div>}
+      {error && <div>{error}</div>}
       <ul>{trips ? list : null}</ul>
       <div className="flex justify-center w-full space-x-2">
         <button
