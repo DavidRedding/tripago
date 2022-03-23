@@ -5,11 +5,12 @@ const TripList = () => {
   const [trips, setTrips] = useState([]);
   const [url, setUrl] = useState(' http://localhost:3000/trips');
 
-  useEffect(() => {
-    axios(url)
-      .then((res) => res.data)
-      .then((json) => setTrips(json));
-  }, [url]);
+  const getTrips = async () => {
+    const res = await axios(url);
+    setTrips(res.data);
+  };
+
+  useEffect(() => getTrips(), [url]);
 
   const list = trips.map((trip) => (
     <li key={trip.id} className=" border border-slate-100 mb-6 px-2 py-6 shadow rounded hover:bg-slate-100">
