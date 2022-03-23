@@ -1,16 +1,17 @@
 import axios from 'axios';
+import { useCallback } from 'react';
 import { useState, useEffect } from 'react';
 
 const TripList = () => {
   const [trips, setTrips] = useState([]);
   const [url, setUrl] = useState(' http://localhost:3000/trips');
 
-  const getTrips = async () => {
+  const getTrips = useCallback(async () => {
     const res = await axios(url);
     setTrips(res.data);
-  };
+  }, [url]);
 
-  useEffect(() => getTrips(), [url]);
+  useEffect(() => getTrips(), [getTrips]);
 
   const list = trips.map((trip) => (
     <li key={trip.id} className=" border border-slate-100 mb-6 px-2 py-6 shadow rounded hover:bg-slate-100">
