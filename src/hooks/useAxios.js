@@ -2,20 +2,22 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 const useAxios = (url) => {
-  // receives err if useState set to anything besides []
-  // likely because of map,thought I should still be able to set to null though.
   const [data, setData] = useState([]);
+  const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
+      setIsPending(true);
+
       const res = await axios(url);
-      console.log(res.data);
+
+      setIsPending(false);
       setData(res.data);
     };
     getData();
   }, [url]);
 
-  return { data };
+  return { data, isPending };
 };
 
 export default useAxios;

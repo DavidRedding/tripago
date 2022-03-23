@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 const TripList = () => {
   const [url, setUrl] = useState(' http://localhost:3000/trips');
-  const { data: trips } = useAxios(url);
+  const { data: trips, isPending } = useAxios(url);
 
   const list = trips.map((trip) => (
     <li key={trip.id} className=" border border-slate-100 mb-6 px-2 py-6 shadow rounded hover:bg-slate-100">
