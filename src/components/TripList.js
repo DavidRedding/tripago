@@ -6,7 +6,7 @@ const TripList = () => {
   const { data: trips, isPending, error } = useAxios(url);
 
   const list = trips.map((trip) => (
-    <li key={trip.id} className=" border border-slate-100 mb-6 px-2 py-6 shadow rounded hover:bg-slate-100">
+    <li key={trip.id} className=" border border-slate-100 mb-6 px-3 py-6 shadow rounded hover:bg-slate-100">
       <h3 className="font-bold text-lg mb-2">{trip.title}</h3>
       <h3>{trip.price}</h3>
     </li>
