@@ -22,7 +22,6 @@ const useAxios = (url) => {
           setIsPending(false);
           setError(`Could not fetch the data`);
         }
-        // console.log(err.toJSON());
       }
     };
     fetchData();

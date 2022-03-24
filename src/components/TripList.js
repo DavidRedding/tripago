@@ -2,7 +2,7 @@ import useAxios from '../hooks/useAxios';
 import { useState } from 'react';
 
 const TripList = () => {
-  const [url, setUrl] = useState(' http://localhost:3000/tripss');
+  const [url, setUrl] = useState(' http://localhost:3000/trips');
   const { data: trips, isPending, error } = useAxios(url);
 
   const list = trips.map((trip) => (
