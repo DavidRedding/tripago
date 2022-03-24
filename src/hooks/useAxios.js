@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const useAxios = (url) => {
+const useAxios = (url, name) => {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(name);
     const controller = new AbortController();
     const fetchData = async () => {
       setIsPending(true);
@@ -22,13 +23,12 @@ const useAxios = (url) => {
           setIsPending(false);
           setError(`Could not fetch the data`);
         }
-        // console.log(err.toJSON());
       }
     };
     fetchData();
 
     return () => controller.abort();
-  }, [url]);
+  }, [url, name]);
 
   return { data, isPending, error };
 };
