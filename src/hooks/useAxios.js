@@ -1,10 +1,14 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const useAxios = (url, options) => {
+const useAxios = (url, _options) => {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+
+  // use useRef to wrap an object/array argument
+  // which is  a useEffect dependency
+  const options = useRef(_options).current;
 
   useEffect(() => {
     console.log(options);
